@@ -1,0 +1,108 @@
+name: Deploy Vue app to GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '23.7.0'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Vue app
+        run: npm run build
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4name: Deploy Vue app to GitHub Pages
+        
+        on:
+          push:
+            branches: ["main"]
+          workflow_dispatch:
+        
+        permissions:
+          contents: read
+          pages: write
+          id-token: write
+        
+        concurrency:
+          group: "pages"
+          cancel-in-progress: false
+        
+        jobs:
+          build:
+            runs-on: ubuntu-latest
+            steps:
+              - name: Checkout
+                uses: actions/checkout@v4
+        
+              - name: Setup Node.js
+                uses: actions/setup-node@v3
+                with:
+                  node-version: '23.7.0'
+        
+              - name: Install dependencies
+                run: npm install
+        
+              - name: Build Vue app
+                run: npm run build
+        
+              - name: Upload artifact
+                uses: actions/upload-pages-artifact@v3
+                with:
+                  path: dist
+        
+          deploy:
+            environment:
+              name: github-pages
+              url: ${{ steps.deployment.outputs.page_url }}
+            runs-on: ubuntu-latest
+            needs: build
+              - name: Deploy to GitHub Pages
+                id: deployment
+                uses: actions/deploy-pages@v4<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/herdei-calculator/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React</title>
+    <script type="module" crossorigin src="/herdei-calculator/assets/index-qxLDIE4L.js"></script>
+    <link rel="stylesheet" crossorigin href="/herdei-calculator/assets/index-B8VY1xDd.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
