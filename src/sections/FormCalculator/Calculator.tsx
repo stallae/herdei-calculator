@@ -19,6 +19,9 @@ const Calculator = () => {
     const [stateOfResidence, setStateOfResidence] = useState("");
     const [numberOfGoods, setNumberOfGoods] = useState("");
     const [goods, setGoods] = useState<Good[]>([]);
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState("");
     const navigate = useNavigate();
 
     const handleNumberOfGoodsChange = (value: string) => {
@@ -38,6 +41,19 @@ const Calculator = () => {
         setGoods(updatedGoods);
     };
 
+    const isFormValid = () => {
+        if (!maritalStatus || !stateOfResidence || !numberOfGoods) return false;
+        if (!name || !email || !phone) return false;
+        
+        return goods.every(good => {
+            if (!good.type || !good.value) return false;
+            if (good.type === "Imóvel" && !good.location) return false;
+            if (["União com comunhão universal de bens", "União com comunhão parcial de bens", "União com separação obrigatória de bens"]
+                .includes(maritalStatus) && !good.acquiredAfterUnion) return false;
+            return true;
+        });
+    };
+
     return (
         <div id="simulador" className="h-fill w-screen bg-[#20BFFA] flex flex-col items-center gap-10 p-5 md:p-10">
             <div className="text-3xl font-bold w-10/12">
@@ -46,6 +62,32 @@ const Calculator = () => {
                 <span className="text-black">IMPOSTOS</span>
             </div>
             <div className="grid bg-white w-11/12 gap-4 rounded-2xl p-5 py-10 md:p-15 overflow-auto">
+                <div className="border-b border-[#20BFFA] pb-4 mb-4">
+                    <h3 className="text-sm font-semibold mb-3">Informações de Contato</h3>
+                    <div className="w-full grid-cols-3 flex gap-4 pb-3">
+                        <Input
+                            label="Nome"
+                            value={name}
+                            onChange={setName}
+                            type="text"
+                            required={true}
+                        />
+                        <Input
+                            label="Email"
+                            value={email}
+                            onChange={setEmail}
+                            type="email"
+                            required={true}
+                        />
+                        <Input
+                            label="Telefone"
+                            value={phone}
+                            onChange={setPhone}
+                            type="tel"
+                            required={true}
+                        />
+                    </div>
+                </div>
                 <div>
                     <div className="w-full grid-cols-2 flex gap-4 pb-3">
                         <Dropdown
@@ -79,13 +121,17 @@ const Calculator = () => {
                                     options={PropertyType}
                                     value={good.type}
                                     onChange={(value) => updateGood(index, 'type', value)}
+                                    required={true}
                                 />
 
                                 <Input
                                     label="Valor do Bem"
+                                    type="number"
                                     value={good.value}
                                     onChange={(value) => updateGood(index, 'value', value)}
-                                    placeholder="Valor do Bem"
+                                    step={10000}
+                                    required={true}
+                                    min={0}
                                 />
                             </div>
                             {good.type === "Imóvel" && (
@@ -129,6 +175,7 @@ const Calculator = () => {
                                 });
                                 navigate('/output', {state: {result}});
                             }}
+                            disabled={!isFormValid()}
                         />
                         <SquaredButton
                             color="#ADE0F3"
