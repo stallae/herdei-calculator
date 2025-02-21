@@ -23,14 +23,14 @@ const Menu = () => {
                         <span className="font-bold text-xl">Herdei</span>
                     </div>
 
-                    <nav className="hidden md:flex items-center space-x-5 w-1/2 ml-10">
+                    <nav className="hidden md:flex items-center space-x-5 w-1/2">
                         <a href="https://euherdei.com.br/" className="text-gray-600 hover:text-gray-900">
                             Home
                         </a>
                         <a href="#como-funciona" 
                            onClick={(e) => handleNavClick(e, 'como-funciona')} 
                            className="text-gray-600 hover:text-gray-900">
-                            Como Funciona?
+                            Como Funciona
                         </a>
                         <a href="#simulador" 
                            onClick={(e) => handleNavClick(e, 'simulador')} 
@@ -46,7 +46,7 @@ const Menu = () => {
                         </a>
                     </nav>
 
-                    <div className="hidden md:flex justify-end w-1/2">
+                    <div className="hidden md:flex justify-end w-1/4">
                         <RoundedButton text="Simular agora" onClick={() => scrollToComponent("simulador")}/>
                     </div>
 
@@ -59,14 +59,14 @@ const Menu = () => {
 
                 {isMenuOpen && (
                     <div className="md:hidden">
-                        <div className="px-2 pt-2 pb-3 space-y-1 w-fit">
+                        <div className="px-2 pt-2 pb-3 space-y-1 w-full">
                             <a href="/" className="block px-3 py-2 text-gray-600 hover:text-gray-900">
                                 Home
                             </a>
                             <a href="#como-funciona" 
                                onClick={(e) => handleNavClick(e, 'como-funciona')} 
                                className="block px-3 py-2 text-gray-600 hover:text-gray-900">
-                                Como Funciona?
+                                Como Funciona
                             </a>
                             <a href="#simulador" 
                                onClick={(e) => handleNavClick(e, 'simulador')} 
@@ -79,7 +79,7 @@ const Menu = () => {
                             <a href="https://herdei.com.br/contato" className="block px-3 py-2 text-gray-600 hover:text-gray-900">
                                 Contato
                             </a>
-                            <div className="px-3 py-2">
+                            <div className="px-3 py-2 w-full">
                                 <RoundedButton text="Simular agora" onClick={() => scrollToComponent("simulador")}/>
                             </div>
                         </div>

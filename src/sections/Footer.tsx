@@ -3,7 +3,7 @@ import HerdeiLogo from "../assets/HerdeiLogo.png";
 const Footer = () => {
     return (
         <footer className="bg-white w-full">
-            <div className="container mx-auto px-4 py-16">
+            <div className="container mx-auto px-4 py-10">
                 <div className="flex flex-col md:flex-row">
                     <div className="w-full md:w-1/2 md:pl-16 pl-3 mb-8 md:mb-4">
                         <div className="pr-8">
@@ -71,7 +71,7 @@ const Footer = () => {
                 </div>
 
                 {/* Bottom text div */}
-                <div className="text-center pt-30">
+                <div className="text-center pt-15">
                     <p className="text-gray-600 text-sm">© 2025 Herdei. Todos os direitos reservados.</p>
                 </div>
             </div>
