@@ -1,5 +1,6 @@
 import React from "react";
 import RoundedButton from "../components/RoundedButton";
+import { scrollToComponent } from "../utils/scrollUtils";
 
 const Header: React.FC = () => {
     return (
@@ -8,7 +9,7 @@ const Header: React.FC = () => {
                 <h1 className="text-[#20BFFA] text-m font-semibold mb-4">
                     Evite Surpresas
                 </h1>
-                <p className="text-5xl font-bold mb-3 leading-tight">
+                <p className="md:text-5xl text-3xl font-bold mb-3 leading-tight">
                    SIMULE SEUS CUSTOS DE <br/>FORMA RÁPIDA E 100%<br/>ONLINE
                 </p>
                 <p className=" my-8 font-medium text-[#666664] text-medium">
@@ -17,7 +18,7 @@ const Header: React.FC = () => {
                 <div className="flex justify-center w-1/2 mx-auto">
                     <RoundedButton 
                         text="Calcule Gratuitamente"
-                        onClick={() => console.log("Button clicked")}
+                        onClick={() => scrollToComponent("simulador")}
                     />
                 </div>
             </div>

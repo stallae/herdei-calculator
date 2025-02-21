@@ -1,9 +1,18 @@
 import HerdeiLogo from "../assets/HerdeiLogo.png";
 import RoundedButton from "../components/RoundedButton";
 import { useState } from "react";
+import { FiMenu, FiX } from 'react-icons/fi';
+import { scrollToComponent } from "../utils/scrollUtils";
 
 const Menu = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+        if (id) {
+            e.preventDefault();
+            scrollToComponent(id);
+        }
+    };
 
     return (
         <header className="bg-white w-full border-b border-gray-200 shadow-sm">
@@ -15,32 +24,35 @@ const Menu = () => {
                     </div>
 
                     <nav className="hidden md:flex items-center space-x-5 w-1/2 ml-10">
-                        <a href="/" className="text-gray-600 hover:text-gray-900">
+                        <a href="https://euherdei.com.br/" className="text-gray-600 hover:text-gray-900">
                             Home
                         </a>
-                        <a href="#como-funciona" className="text-gray-600 hover:text-gray-900">
+                        <a href="#como-funciona" 
+                           onClick={(e) => handleNavClick(e, 'como-funciona')} 
+                           className="text-gray-600 hover:text-gray-900">
                             Como Funciona?
                         </a>
-                        <a href="#simulador" className="text-gray-600 hover:text-gray-900">
+                        <a href="#simulador" 
+                           onClick={(e) => handleNavClick(e, 'simulador')} 
+                           className="text-gray-600 hover:text-gray-900">
                             Simulador
                         </a>
-                        <a href="#sobre" className="text-gray-600 hover:text-gray-900">
+                        <a href="https://euherdei.com.br/sobre-nos" className="text-gray-600 hover:text-gray-900">
                             Sobre
                         </a>
-                        <a href="#contato" className="text-gray-600 hover:text-gray-900">
+                        <a href="https://api.whatsapp.com/send/?phone=5511941062025&text=Quero+falar+com+um+Especialista&type=phone_number&app_absent=0" 
+                           className="text-gray-600 hover:text-gray-900">
                             Contato
                         </a>
                     </nav>
 
                     <div className="hidden md:flex justify-end w-1/2">
-                        <RoundedButton text="Simular agora" onClick={() => {}} />
+                        <RoundedButton text="Simular agora" onClick={() => scrollToComponent("simulador")}/>
                     </div>
 
                     <div className="md:hidden">
                         <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="py-2 px-4 bg-[#ABE0F3] rounded-full">
-                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={isMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
-                            </svg>
+                            {isMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
                         </button>
                     </div>
                 </div>
@@ -51,20 +63,24 @@ const Menu = () => {
                             <a href="/" className="block px-3 py-2 text-gray-600 hover:text-gray-900">
                                 Home
                             </a>
-                            <a href="#como-funciona" className="block px-3 py-2 text-gray-600 hover:text-gray-900">
+                            <a href="#como-funciona" 
+                               onClick={(e) => handleNavClick(e, 'como-funciona')} 
+                               className="block px-3 py-2 text-gray-600 hover:text-gray-900">
                                 Como Funciona?
                             </a>
-                            <a href="#simulador" className="block px-3 py-2 text-gray-600 hover:text-gray-900">
+                            <a href="#simulador" 
+                               onClick={(e) => handleNavClick(e, 'simulador')} 
+                               className="block px-3 py-2 text-gray-600 hover:text-gray-900">
                                 Simulador
                             </a>
-                            <a href="#sobre" className="block px-3 py-2 text-gray-600 hover:text-gray-900">
+                            <a href="https://herdei.com.br/sobre" className="block px-3 py-2 text-gray-600 hover:text-gray-900">
                                 Sobre
                             </a>
-                            <a href="#contato" className="block px-3 py-2 text-gray-600 hover:text-gray-900">
+                            <a href="https://herdei.com.br/contato" className="block px-3 py-2 text-gray-600 hover:text-gray-900">
                                 Contato
                             </a>
                             <div className="px-3 py-2">
-                                <RoundedButton text="Simular agora" onClick={() => {}} />
+                                <RoundedButton text="Simular agora" onClick={() => scrollToComponent("simulador")}/>
                             </div>
                         </div>
                     </div>

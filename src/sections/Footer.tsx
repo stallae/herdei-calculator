@@ -22,17 +22,17 @@ const Footer = () => {
                             <h3 className="font-bold text-lg mb-4">Links úteis</h3>
                             <ul className="space-y-2">
                                 <li>
-                                    <a href="#" className="text-gray-600 hover:text-gray-900 underline">
+                                    <a href="https://euherdei.com.br/politica-privacidade" className="text-gray-600 hover:text-gray-900 underline">
                                         Política de privacidade
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" className="text-gray-600 hover:text-gray-900 underline">
+                                    <a href="https://euherdei.com.br/termos-de-uso" className="text-gray-600 hover:text-gray-900 underline">
                                         Termos de uso
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" className="text-gray-600 hover:text-gray-900 underline">
+                                    <a href="https://api.whatsapp.com/send/?phone=5511941062025&text=Quero+falar+com+um+Especialista&type=phone_number&app_absent=0" className="text-gray-600 hover:text-gray-900 underline">
                                         Fale conosco
                                     </a>
                                 </li>
@@ -45,17 +45,23 @@ const Footer = () => {
                             <h3 className="font-bold text-lg mb-4">Redes sociais</h3>
                             <ul className="space-y-2">
                                 <li>
-                                    <a href="#" className="text-gray-600 hover:text-gray-900 underline">
+                                    <a href="https://www.instagram.com/euherdei" 
+                                       target="_blank" 
+                                       className="text-gray-600 hover:text-gray-900 underline">
                                         Instagram
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" className="text-gray-600 hover:text-gray-900 underline">
+                                    <a href="https://www.linkedin.com/company/euherdei" 
+                                       target="_blank" 
+                                       className="text-gray-600 hover:text-gray-900 underline">
                                         LinkedIn
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" className="text-gray-600 hover:text-gray-900 underline">
+                                    <a href="https://www.facebook.com/euherdei" 
+                                       target="_blank" 
+                                       className="text-gray-600 hover:text-gray-900 underline">
                                         Facebook
                                     </a>
                                 </li>

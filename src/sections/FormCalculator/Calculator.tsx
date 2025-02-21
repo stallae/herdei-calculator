@@ -39,7 +39,7 @@ const Calculator = () => {
     };
 
     return (
-        <div id="Calculator" className="h-fill w-screen bg-[#20BFFA] flex flex-col items-center gap-10 p-5 md:p-10">
+        <div id="simulador" className="h-fill w-screen bg-[#20BFFA] flex flex-col items-center gap-10 p-5 md:p-10">
             <div className="text-3xl font-bold w-10/12">
                 <span className="text-white">CALCULADORA</span><br/>
                 <span className="text-white">DE </span>
