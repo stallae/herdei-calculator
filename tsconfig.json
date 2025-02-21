@@ -24,6 +24,7 @@
   },
   "include": [
     "src",
+    "src/types/*.d.ts",  // Add this line
     "tailwind.config.js"
   ],
   "references": [
