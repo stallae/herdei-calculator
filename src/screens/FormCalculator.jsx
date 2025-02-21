@@ -3,8 +3,8 @@ import Footer from "../sections/Footer.tsx";
 import Menu from "../sections/Menu.tsx";
 import Header from "../sections/Header.tsx";
 import Steps from "../sections/FormCalculator/Steps.tsx";
-import Testimonials from "../sections/FormCalculator/Testimonials.tsx";
-import FAQs from "../sections/FormCalculator/FAQs.tsx";
+// import Testimonials from "../sections/FormCalculator/Testimonials.tsx";
+// import FAQs from "../sections/FormCalculator/FAQs.tsx";
 
 const FormCalculator = () => {
     return (
@@ -13,8 +13,8 @@ const FormCalculator = () => {
             <Header/>
             <Steps/>
             <Calculator/>
-            <Testimonials/>
-            <FAQs/>
+            {/* <Testimonials/>
+            <FAQs/> */}
             <Footer/>
         </div>
     );
