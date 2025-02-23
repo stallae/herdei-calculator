@@ -7,4 +7,13 @@ export default defineConfig({
     resolve: {
         alias: []
     },
+    build: {
+        outDir: 'dist',
+        assetsDir: 'assets',
+        rollupOptions: {
+            input: {
+                main: './index.html'
+            }
+        }
+    },
 });
