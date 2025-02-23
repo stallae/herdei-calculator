@@ -7,7 +7,10 @@
     "dev": "vite --config vite.config.dev.js --host",
     "build": "vite build --config vite.config.prod.js",
     "preview": "vite preview --config vite.config.prod.js",
-    "lint": "eslint ."
+    "lint": "eslint . ",
+    "format": "prettier --write src/",
+    "format:check": "prettier --check src/",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.7",
@@ -27,6 +30,7 @@
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.18",
     "globals": "^15.14.0",
+    "husky": "^8.0.3",
     "postcss": "^8.5.3",
     "tailwindcss": "^4.0.7",
     "typescript": "^5.7.3",
