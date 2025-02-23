@@ -1,3 +1,3 @@
 export const AP_TAXES = {
-    // State-specific tax configuration
-};
+  // State-specific tax configuration
+}
