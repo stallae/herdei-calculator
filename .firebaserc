@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "herdei-calculator"
-  }
-} 
+    "default": "herdei-calculator",
+    "herdei-calculator": "herdei-29326"
+  },
+  "targets": {},
+  "etags": {}
+}

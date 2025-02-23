@@ -14,6 +14,10 @@ export default defineConfig({
             input: {
                 main: './index.html'
             }
-        }
+        },
+        minify: 'terser',
+        sourcemap: false,
+        target: 'es2015'
     },
+    base: '/'
 });
