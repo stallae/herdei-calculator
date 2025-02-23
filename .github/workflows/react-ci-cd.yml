@@ -1,4 +1,4 @@
-name: Vue.js CI/CD
+name: React CI/CD
 
 on:
   push:
@@ -20,7 +20,9 @@ jobs:
         cache: 'npm'
 
     - name: Install dependencies
-      run: npm ci
+      run: |
+        npm ci
+        npm install --save-dev prettier
 
     - name: Run linting
       run: npm run lint
@@ -42,7 +44,9 @@ jobs:
         cache: 'npm'
 
     - name: Install dependencies
-      run: npm ci
+      run: |
+        npm ci
+        npm install --save-dev prettier
 
     - name: Build
       run: npm run build
