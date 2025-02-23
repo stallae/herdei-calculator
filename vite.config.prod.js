@@ -4,6 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
     plugins: [tailwindcss(), react()],
+    base: '/',
     resolve: {
         alias: []
     },
@@ -17,6 +18,7 @@ export default defineConfig({
         },
         minify: 'terser',
         sourcemap: false,
-        target: 'es2015'
+        target: 'es2015',
+        emptyOutDir: true
     }
 });
