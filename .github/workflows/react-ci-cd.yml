@@ -1,4 +1,4 @@
-name: React Lint
+name: React CI/CD
 
 on:
   push:
@@ -27,3 +27,14 @@ jobs:
 
     - name: Check formatting
       run: npm run format:check
+
+    - name: Build
+      run: npm run build
+
+    - name: Deploy to Firebase
+      uses: FirebaseExtended/action-hosting-deploy@v0
+      with:
+        repoToken: '${{ secrets.GITHUB_TOKEN }}'
+        firebaseToken: '${{ secrets.FIREBASE_TOKEN }}'
+        projectId: herdei-29326
+        channelId: live
