@@ -28,6 +28,17 @@ const Calculator = () => {
   const [phone, setPhone] = useState('')
   const navigate = useNavigate()
 
+  const handleClear = () =>  {
+    setMaritalStatus('')
+    setStateOfResidence('')
+    setNumberOfGoods('')
+    setGoods([])
+    setName('')
+    setEmail('')
+    setPhone('')
+  }
+
+  
   const handleNumberOfGoodsChange = (value: string) => {
     const num = parseInt(value) || 0
     setNumberOfGoods(value)

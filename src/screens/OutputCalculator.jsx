@@ -106,7 +106,7 @@ const OutputCalculator = () => {
               </div>
             </div>
             <div className="text-3xl font-inter font-bold text-black text-center">
-              Economia
+              Economia com a Herdei
               <div className="text-3xl mt-2">
                 R$ {result.Comparison.totalDifference.amount.toLocaleString()} (
                 {result.Comparison.totalDifference.percentage.toFixed(1)}%)
