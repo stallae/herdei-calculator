@@ -21,4 +21,4 @@ export const handleCalculateClick = (navigate?: NavigateFunction) => {
     // If we're already on the home page, just scroll
     scrollToSection('simulador')
   }
-} 
+}
