@@ -1,11 +1,17 @@
-import { calculateTaxes } from '../services/calculatorService'
-
-export const handleClear = () => {
-  window.location.reload()
-}
-
-export const handleCalculate = (formData, navigate) => {
-  const results = calculateTaxes(formData)
-
-  navigate('/output', { state: results })
+export const handleClear = ({
+  setMaritalStatus,
+  setStateOfResidence,
+  setNumberOfGoods,
+  setGoods,
+  setName,
+  setEmail,
+  setPhone
+}) => {
+  setMaritalStatus('')
+  setStateOfResidence('')
+  setNumberOfGoods('')
+  setGoods([])
+  setName('')
+  setEmail('')
+  setPhone('')
 }
