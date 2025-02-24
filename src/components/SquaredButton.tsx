@@ -18,7 +18,7 @@ const SquaredButton = ({
   const handleClick = () => {
     setIsRippling(true)
     onClick()
-    setTimeout(() => setIsRippling(false), 20) // Reset after 300ms
+    setTimeout(() => setIsRippling(false), 20)
   }
 
   return (
@@ -26,7 +26,7 @@ const SquaredButton = ({
       onClick={handleClick}
       disabled={disabled}
       style={{ opacity: isRippling ? 0 : 1, backgroundColor: color }}
-      className={`w-full h-full rounded-xl text-white font-semibold text-sm ${
+      className={`w-full h-12 md:h-14 rounded-xl text-white font-semibold px-4 text-sm ${
         disabled
           ? 'bg-gray-300 cursor-not-allowed'
           : `bg-[${color}] hover:opacity-90`

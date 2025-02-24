@@ -9,7 +9,6 @@ import {
 } from '../../configuration/FormConstants'
 import { useNavigate } from 'react-router-dom'
 import { calculateTaxes } from '../../services/calculatorService'
-import { handleClear } from '../../utils/formHandlers'
 
 interface Good {
   type: string
@@ -83,7 +82,7 @@ const Calculator = () => {
   return (
     <div
       id="simulador"
-      className="h-fill w-screen bg-[#20BFFA] flex flex-col items-center gap-10 p-5 md:p-10"
+      className=" w-screen bg-[#20BFFA] flex flex-col items-center gap-10 p-5 md:p-10"
     >
       <div className="text-3xl font-bold w-10/12">
         <span className="text-white">CALCULADORA</span>
@@ -91,7 +90,7 @@ const Calculator = () => {
         <span className="text-white">DE </span>
         <span className="text-black">IMPOSTOS</span>
       </div>
-      <div className="grid bg-white w-11/12 gap-4 rounded-2xl p-5 py-10 md:p-15 overflow-auto">
+      <div className="grid bg-white w-11/12 h-10/12 gap-4 rounded-2xl p-5 py-10 md:p-15 overflow-auto">
         <div className="border-b border-[#20BFFA] pb-4 mb-4">
           <h3 className="text-sm font-semibold mb-3">Informações de Contato</h3>
           <div className="w-full grid-cols-3 flex gap-4 pb-3">
@@ -194,11 +193,11 @@ const Calculator = () => {
           ))}
         </div>
 
-        <div className="mt-auto w-full flex flex-col sm:flex-row h-[160px] sm:h-25 items-center justify-between p-4 border border-[#BCC0C2] rounded-2xl bg-white gap-4 sm:gap-0">
+        <div className="mt-auto w-full flex flex-col sm:flex-row h-auto sm:h-24 items-center justify-between p-4 md:pr-8 border border-[#BCC0C2] rounded-2xl bg-white gap-4 sm:gap-4">
           <span className="text-base text-[#7F8FA2] font-inter font-semibold text-center sm:text-left">
             Calcule Agora Mesmo Seus Custos!
           </span>
-          <div className="flex gap-2 w-full sm:w-1/4 h-[120px] sm:h-full">
+          <div className="flex gap-2 w-full sm:w-1/3">
             <SquaredButton
               color="#20BFFA"
               text="Calcular"
