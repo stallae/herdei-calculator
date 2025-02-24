@@ -3,8 +3,11 @@ import RoundedButton from '../components/RoundedButton'
 import { useState } from 'react'
 import { FiMenu, FiX } from 'react-icons/fi'
 import { scrollToComponent } from '../utils/scrollUtils'
+import { useNavigate } from 'react-router-dom'
+import { handleCalculateClick } from '../utils/navigation'
 
 const Menu = () => {
+  const navigate = useNavigate()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const handleNavClick = (
@@ -64,7 +67,7 @@ const Menu = () => {
           <div className="hidden md:flex justify-end w-1/4">
             <RoundedButton
               text="Simular agora"
-              onClick={() => scrollToComponent('simulador')}
+              onClick={() => scrollToComponent('simulador', navigate)}
             />
           </div>
 
@@ -116,7 +119,7 @@ const Menu = () => {
               <div className="px-3 py-2 w-full">
                 <RoundedButton
                   text="Simular agora"
-                  onClick={() => scrollToComponent('simulador')}
+                  onClick={() => scrollToComponent('simulador', navigate)}
                 />
               </div>
             </div>
