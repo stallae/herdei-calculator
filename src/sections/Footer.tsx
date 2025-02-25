@@ -1,4 +1,4 @@
-import HerdeiLogo from '../assets/HerdeiLogo.png'
+import HerdeiLogo from "../assets/HerdeiLogo.png";
 
 const Footer = () => {
   return (
@@ -98,7 +98,7 @@ const Footer = () => {
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

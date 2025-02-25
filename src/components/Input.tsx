@@ -1,12 +1,12 @@
 interface InputProps {
-  label: string
-  value: string
-  onChange: (value: string) => void
-  placeholder?: string
-  type?: string
-  step?: number
-  required?: boolean
-  min?: number
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+  placeholder?: string;
+  type?: string;
+  step?: number;
+  required?: boolean;
+  min?: number;
 }
 
 const Input = ({
@@ -14,9 +14,9 @@ const Input = ({
   value,
   onChange,
   placeholder,
-  type = 'text',
+  type = "text",
   step,
-  required = true
+  required = true,
 }: InputProps) => {
   return (
     <div className="w-full block">
@@ -32,12 +32,12 @@ const Input = ({
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
         step={step}
-        min={type === 'number' ? 0 : undefined}
+        min={type === "number" ? 0 : undefined}
         required={required}
         className="bg-no-repeat appearance-none w-full bg-[#F0F6FF] block rounded border-transparent text-xs outline-2 outline-[#BCC0C2] focus:outline-[#20BFFA] font-semibold p-4"
       />
     </div>
-  )
-}
+  );
+};
 
-export default Input
+export default Input;

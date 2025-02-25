@@ -1,11 +1,11 @@
-import React from 'react'
-import RoundedButton from '../components/RoundedButton'
-import { handleCalculateClick } from '../utils/navigation'
-import { useNavigate } from 'react-router-dom'
-import { scrollToComponent } from '../utils/scrollUtils'
+import React from "react";
+import RoundedButton from "../components/RoundedButton";
+import { handleCalculateClick } from "../utils/navigation";
+import { useNavigate } from "react-router-dom";
+import { scrollToComponent } from "../utils/scrollUtils";
 
 const Header: React.FC = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <section className="bg-white py-16">
@@ -27,12 +27,12 @@ const Header: React.FC = () => {
         <div className="flex justify-center w-1/2 mx-auto">
           <RoundedButton
             text="Calcule Gratuitamente"
-            onClick={() => scrollToComponent('simulador', navigate)}
+            onClick={() => scrollToComponent("simulador", navigate)}
           />
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

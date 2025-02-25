@@ -1,8 +1,8 @@
-import Calculator from '../sections/FormCalculator/Calculator.jsx'
-import Footer from '../sections/Footer.tsx'
-import Menu from '../sections/Menu.tsx'
-import Header from '../sections/Header.tsx'
-import Steps from '../sections/FormCalculator/Steps.tsx'
+import Calculator from "../sections/FormCalculator/Calculator.jsx";
+import Footer from "../sections/Footer.tsx";
+import Menu from "../sections/Menu.tsx";
+import Header from "../sections/Header.tsx";
+import Steps from "../sections/FormCalculator/Steps.tsx";
 // import Testimonials from "../sections/FormCalculator/Testimonials.tsx";
 // import FAQs from "../sections/FormCalculator/FAQs.tsx";
 
@@ -17,7 +17,7 @@ const FormCalculator = () => {
             <FAQs/> */}
       <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default FormCalculator
+export default FormCalculator;

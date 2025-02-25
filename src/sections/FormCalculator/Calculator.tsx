@@ -1,116 +1,115 @@
-import { useState } from 'react'
-import Dropdown from '../../components/Dropdown'
-import Input from '../../components/Input'
-import SquaredButton from '../../components/SquaredButton'
+import { useState } from "react";
+import Dropdown from "../../components/Dropdown";
+import Input from "../../components/Input";
+import SquaredButton from "../../components/SquaredButton";
 import {
   Location,
   MaritalStatus,
   PropertyType,
   MaritalStatusType,
-  LocationType
-} from '../../configuration/FormConstants'
-import { useNavigate } from 'react-router-dom'
-import { calculateTaxes } from '../../services/calculatorService'
+  LocationType,
+} from "../../configuration/FormConstants";
+import { useNavigate } from "react-router-dom";
+import { calculateTaxes } from "../../services/calculatorService";
 
 interface Good {
-  type: string
-  value: string
-  location: LocationType
-  acquiredAfterUnion: string
+  type: string;
+  value: string;
+  location: LocationType;
+  acquiredAfterUnion: string;
 }
 
 const Calculator = () => {
-  const [maritalStatus, setMaritalStatus] = useState('')
-  const [stateOfResidence, setStateOfResidence] = useState('')
-  const [numberOfGoods, setNumberOfGoods] = useState('')
-  const [goods, setGoods] = useState<Good[]>([])
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [phone, setPhone] = useState('')
-  const navigate = useNavigate()
+  const [maritalStatus, setMaritalStatus] = useState("");
+  const [stateOfResidence, setStateOfResidence] = useState("");
+  const [numberOfGoods, setNumberOfGoods] = useState("");
+  const [goods, setGoods] = useState<Good[]>([]);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const navigate = useNavigate();
 
-  const handleClear = () =>  {
-    setMaritalStatus('')
-    setStateOfResidence('')
-    setNumberOfGoods('')
-    setGoods([])
-    setName('')
-    setEmail('')
-    setPhone('')
-  }
+  const handleClear = () => {
+    setMaritalStatus("");
+    setStateOfResidence("");
+    setNumberOfGoods("");
+    setGoods([]);
+    setName("");
+    setEmail("");
+    setPhone("");
+  };
 
-  
   const handleNumberOfGoodsChange = (value: string) => {
-    const num = parseInt(value) || 0
-    setNumberOfGoods(value)
+    const num = parseInt(value) || 0;
+    setNumberOfGoods(value);
     setGoods(
       Array(num)
         .fill(null)
         .map(() => ({
-          type: '',
-          value: '',
-          location: '' as LocationType,
-          acquiredAfterUnion: ''
-        }))
-    )
-  }
+          type: "",
+          value: "",
+          location: "" as LocationType,
+          acquiredAfterUnion: "",
+        })),
+    );
+  };
 
   const updateGood = (index: number, field: string, value: string) => {
-    const updatedGoods = [...goods]
-    updatedGoods[index] = { 
-      ...updatedGoods[index], 
-      [field]: field === 'location' ? value as LocationType : value 
-    }
-    setGoods(updatedGoods)
-  }
+    const updatedGoods = [...goods];
+    updatedGoods[index] = {
+      ...updatedGoods[index],
+      [field]: field === "location" ? (value as LocationType) : value,
+    };
+    setGoods(updatedGoods);
+  };
 
   const isFormValid = () => {
-    if (!maritalStatus || !stateOfResidence || !numberOfGoods) return false
-    if (!name || !email || !phone) return false
+    if (!maritalStatus || !stateOfResidence || !numberOfGoods) return false;
+    if (!name || !email || !phone) return false;
 
     return goods.every((good) => {
-      if (!good.type || !good.value) return false
-      if (good.type === 'Imóvel' && !good.location) return false
+      if (!good.type || !good.value) return false;
+      if (good.type === "Imóvel" && !good.location) return false;
       if (
         [
-          'União com comunhão universal de bens',
-          'União com comunhão parcial de bens',
-          'União com separação obrigatória de bens'
+          "União com comunhão universal de bens",
+          "União com comunhão parcial de bens",
+          "União com separação obrigatória de bens",
         ].includes(maritalStatus) &&
         !good.acquiredAfterUnion
       )
-        return false
-      return true
-    })
-  }
+        return false;
+      return true;
+    });
+  };
 
   const getFormValidationMessage = () => {
-    if (!maritalStatus) return 'Por favor, selecione o estado civil'
-    if (!stateOfResidence) return 'Por favor, selecione o estado de residência'
-    if (!numberOfGoods) return 'Por favor, informe a quantidade de bens'
-    if (!name) return 'Por favor, informe seu nome'
-    if (!email) return 'Por favor, informe seu email'
-    if (!phone) return 'Por favor, informe seu telefone'
+    if (!maritalStatus) return "Por favor, selecione o estado civil";
+    if (!stateOfResidence) return "Por favor, selecione o estado de residência";
+    if (!numberOfGoods) return "Por favor, informe a quantidade de bens";
+    if (!name) return "Por favor, informe seu nome";
+    if (!email) return "Por favor, informe seu email";
+    if (!phone) return "Por favor, informe seu telefone";
 
     for (let i = 0; i < goods.length; i++) {
-      const good = goods[i]
-      if (!good.type) return `Por favor, selecione o tipo do bem ${i + 1}`
-      if (!good.value) return `Por favor, informe o valor do bem ${i + 1}`
-      if (good.type === 'Imóvel' && !good.location)
-        return `Por favor, selecione a localização do imóvel ${i + 1}`
+      const good = goods[i];
+      if (!good.type) return `Por favor, selecione o tipo do bem ${i + 1}`;
+      if (!good.value) return `Por favor, informe o valor do bem ${i + 1}`;
+      if (good.type === "Imóvel" && !good.location)
+        return `Por favor, selecione a localização do imóvel ${i + 1}`;
       if (
         [
-          'União com comunhão universal de bens',
-          'União com comunhão parcial de bens',
-          'União com separação obrigatória de bens'
+          "União com comunhão universal de bens",
+          "União com comunhão parcial de bens",
+          "União com separação obrigatória de bens",
         ].includes(maritalStatus) &&
         !good.acquiredAfterUnion
       )
-        return `Por favor, informe se o bem ${i + 1} foi adquirido depois da união`
+        return `Por favor, informe se o bem ${i + 1} foi adquirido depois da união`;
     }
 
-    return 'Preencha todos os campos obrigatórios'
-  }
+    return "Preencha todos os campos obrigatórios";
+  };
 
   return (
     <div
@@ -182,7 +181,7 @@ const Calculator = () => {
                   label="Tipo de Bem"
                   options={PropertyType}
                   value={good.type}
-                  onChange={(value) => updateGood(index, 'type', value)}
+                  onChange={(value) => updateGood(index, "type", value)}
                   required={true}
                 />
 
@@ -190,34 +189,34 @@ const Calculator = () => {
                   label="Valor do Bem"
                   type="number"
                   value={good.value}
-                  onChange={(value) => updateGood(index, 'value', value)}
+                  onChange={(value) => updateGood(index, "value", value)}
                   step={10000}
                   required={true}
                   min={0}
                 />
               </div>
-              {good.type === 'Imóvel' && (
+              {good.type === "Imóvel" && (
                 <div className="w-full grid-cols-2 flex gap-4 pb-3">
                   <Dropdown
                     label="Localização do Bem"
                     options={Location}
                     value={good.location}
-                    onChange={(value) => updateGood(index, 'location', value)}
+                    onChange={(value) => updateGood(index, "location", value)}
                   />
                 </div>
               )}
               {[
-                'União com comunhão universal de bens',
-                'União com comunhão parcial de bens',
-                'União com separação obrigatória de bens'
+                "União com comunhão universal de bens",
+                "União com comunhão parcial de bens",
+                "União com separação obrigatória de bens",
               ].includes(maritalStatus) && (
                 <div className="w-full grid-cols-2 flex gap-4 pb-3">
                   <Dropdown
                     label="Adquirido depois da união?"
-                    options={['Sim', 'Não']}
+                    options={["Sim", "Não"]}
                     value={good.acquiredAfterUnion}
                     onChange={(value) =>
-                      updateGood(index, 'acquiredAfterUnion', value)
+                      updateGood(index, "acquiredAfterUnion", value)
                     }
                   />
                 </div>
@@ -239,9 +238,9 @@ const Calculator = () => {
                   const result = calculateTaxes({
                     maritalStatus: maritalStatus as MaritalStatusType,
                     stateOfResidence: stateOfResidence as LocationType,
-                    goods
-                  })
-                  navigate('/output', { state: { result } })
+                    goods,
+                  });
+                  navigate("/output", { state: { result } });
                 }}
                 disabled={!isFormValid()}
                 tooltipText={getFormValidationMessage()}
@@ -258,7 +257,7 @@ const Calculator = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Calculator
+export default Calculator;

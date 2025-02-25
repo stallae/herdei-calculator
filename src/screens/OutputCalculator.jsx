@@ -1,42 +1,42 @@
-import ProgressBar from '../components/ProgressBar'
-import { useNavigate, useLocation } from 'react-router-dom'
-import { IoIosArrowBack } from 'react-icons/io'
+import ProgressBar from "../components/ProgressBar";
+import { useNavigate, useLocation } from "react-router-dom";
+import { IoIosArrowBack } from "react-icons/io";
 
 const OutputCalculator = () => {
-  const navigate = useNavigate()
-  const location = useLocation()
-  const result = location.state?.result
+  const navigate = useNavigate();
+  const location = useLocation();
+  const result = location.state?.result;
 
   if (!result) {
-    navigate('/')
-    return null
+    navigate("/");
+    return null;
   }
 
   // Calculate percentages for progress bars
   const calculatePercentage = (value, total) => {
-    return Math.round((value / total) * 100)
-  }
+    return Math.round((value / total) * 100);
+  };
 
   // HERDEI values
-  const herdeiTaxes = result.HERDEI.estimatedCosts.Taxes.ITCMD.Taxes
-  const herdeiNotary = result.HERDEI.estimatedCosts.Notary
-  const herdeiFees = result.HERDEI.estimatedCosts.Fees
-  const herdeiTotal = herdeiTaxes + herdeiNotary + herdeiFees // Fix total calculation
+  const herdeiTaxes = result.HERDEI.estimatedCosts.Taxes.ITCMD.Taxes;
+  const herdeiNotary = result.HERDEI.estimatedCosts.Notary;
+  const herdeiFees = result.HERDEI.estimatedCosts.Fees;
+  const herdeiTotal = herdeiTaxes + herdeiNotary + herdeiFees; // Fix total calculation
 
   // Others values
-  const othersTaxes = result.Others.estimatedCosts.Taxes.ITCMD.Taxes
-  const othersNotary = result.Others.estimatedCosts.Notary
-  const othersFees = result.Others.estimatedCosts.Fees
-  const othersTotal = othersTaxes + othersNotary + othersFees // Fix total calculation
+  const othersTaxes = result.Others.estimatedCosts.Taxes.ITCMD.Taxes;
+  const othersNotary = result.Others.estimatedCosts.Notary;
+  const othersFees = result.Others.estimatedCosts.Fees;
+  const othersTotal = othersTaxes + othersNotary + othersFees; // Fix total calculation
 
   // Calculate individual percentages
-  const herdeiTaxesPercent = calculatePercentage(herdeiTaxes, herdeiTotal)
-  const herdeiNotaryPercent = calculatePercentage(herdeiNotary, herdeiTotal)
-  const herdeiFeesPercent = calculatePercentage(herdeiFees, herdeiTotal)
+  const herdeiTaxesPercent = calculatePercentage(herdeiTaxes, herdeiTotal);
+  const herdeiNotaryPercent = calculatePercentage(herdeiNotary, herdeiTotal);
+  const herdeiFeesPercent = calculatePercentage(herdeiFees, herdeiTotal);
 
-  const othersTaxesPercent = calculatePercentage(othersTaxes, othersTotal)
-  const othersNotaryPercent = calculatePercentage(othersNotary, othersTotal)
-  const othersFeesPercent = calculatePercentage(othersFees, othersTotal)
+  const othersTaxesPercent = calculatePercentage(othersTaxes, othersTotal);
+  const othersNotaryPercent = calculatePercentage(othersNotary, othersTotal);
+  const othersFeesPercent = calculatePercentage(othersFees, othersTotal);
 
   return (
     <div className="min-h-screen bg-white">
@@ -44,7 +44,7 @@ const OutputCalculator = () => {
         <div className="w-full flex flex-col items-center justify-evenly">
           <div className="grid bg-[#8CE0FF] w-full max-w-7xl gap-10 rounded-2xl py-10 overflow-auto relative">
             <button
-              onClick={() => navigate('/calculator')}
+              onClick={() => navigate("/calculator")}
               className="absolute top-4 left-4 text-gray-600 hover:text-gray-800"
             >
               <IoIosArrowBack size={24} />
@@ -111,7 +111,7 @@ const OutputCalculator = () => {
               <button
                 onClick={() =>
                   (window.location.href =
-                    'https://api.whatsapp.com/send/?phone=5511941062025&text=Quero+falar+com+um+Especialista&type=phone_number&app_absent=0')
+                    "https://api.whatsapp.com/send/?phone=5511941062025&text=Quero+falar+com+um+Especialista&type=phone_number&app_absent=0")
                 }
                 className="w-full md:w-auto px-8 py-3 bg-[#20BFFA] text-white font-semibold rounded-full hover:opacity-90"
               >
@@ -122,7 +122,7 @@ const OutputCalculator = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default OutputCalculator
+export default OutputCalculator;
