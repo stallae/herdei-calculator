@@ -5,7 +5,9 @@ import SquaredButton from '../../components/SquaredButton'
 import {
   Location,
   MaritalStatus,
-  PropertyType
+  PropertyType,
+  MaritalStatusType,
+  LocationType
 } from '../../configuration/FormConstants'
 import { useNavigate } from 'react-router-dom'
 import { calculateTaxes } from '../../services/calculatorService'
@@ -13,7 +15,7 @@ import { calculateTaxes } from '../../services/calculatorService'
 interface Good {
   type: string
   value: string
-  location: string
+  location: LocationType
   acquiredAfterUnion: string
 }
 
@@ -47,7 +49,7 @@ const Calculator = () => {
         .map(() => ({
           type: '',
           value: '',
-          location: '',
+          location: '' as LocationType,
           acquiredAfterUnion: ''
         }))
     )
@@ -55,7 +57,10 @@ const Calculator = () => {
 
   const updateGood = (index: number, field: string, value: string) => {
     const updatedGoods = [...goods]
-    updatedGoods[index] = { ...updatedGoods[index], [field]: value }
+    updatedGoods[index] = { 
+      ...updatedGoods[index], 
+      [field]: field === 'location' ? value as LocationType : value 
+    }
     setGoods(updatedGoods)
   }
 
@@ -77,6 +82,34 @@ const Calculator = () => {
         return false
       return true
     })
+  }
+
+  const getFormValidationMessage = () => {
+    if (!maritalStatus) return 'Por favor, selecione o estado civil'
+    if (!stateOfResidence) return 'Por favor, selecione o estado de residência'
+    if (!numberOfGoods) return 'Por favor, informe a quantidade de bens'
+    if (!name) return 'Por favor, informe seu nome'
+    if (!email) return 'Por favor, informe seu email'
+    if (!phone) return 'Por favor, informe seu telefone'
+
+    for (let i = 0; i < goods.length; i++) {
+      const good = goods[i]
+      if (!good.type) return `Por favor, selecione o tipo do bem ${i + 1}`
+      if (!good.value) return `Por favor, informe o valor do bem ${i + 1}`
+      if (good.type === 'Imóvel' && !good.location)
+        return `Por favor, selecione a localização do imóvel ${i + 1}`
+      if (
+        [
+          'União com comunhão universal de bens',
+          'União com comunhão parcial de bens',
+          'União com separação obrigatória de bens'
+        ].includes(maritalStatus) &&
+        !good.acquiredAfterUnion
+      )
+        return `Por favor, informe se o bem ${i + 1} foi adquirido depois da união`
+    }
+
+    return 'Preencha todos os campos obrigatórios'
   }
 
   return (
@@ -193,29 +226,34 @@ const Calculator = () => {
           ))}
         </div>
 
-        <div className="mt-auto w-full flex flex-col sm:flex-row h-auto sm:h-24 items-center justify-between p-4 md:pr-8 border border-[#BCC0C2] rounded-2xl bg-white gap-4 sm:gap-4">
+        <div className="mt-auto w-full flex flex-col sm:flex-row h-auto sm:h-24 items-center justify-between p-4 md:pr-8 border border-[#BCC0C2] rounded-2xl bg-white gap-4">
           <span className="text-base text-[#7F8FA2] font-inter font-semibold text-center sm:text-left">
             Calcule Agora Mesmo Seus Custos!
           </span>
-          <div className="flex gap-2 w-full sm:w-1/3">
-            <SquaredButton
-              color="#20BFFA"
-              text="Calcular"
-              onClick={() => {
-                const result = calculateTaxes({
-                  maritalStatus,
-                  stateOfResidence,
-                  goods
-                })
-                navigate('/output', { state: { result } })
-              }}
-              disabled={!isFormValid()}
-            />
-            <SquaredButton
-              color="#ADE0F3"
-              text="Limpar"
-              onClick={handleClear}
-            />
+          <div className="flex gap-4 w-full sm:w-auto">
+            <div className="w-1/2 sm:w-32">
+              <SquaredButton
+                color="#20BFFA"
+                text="Calcular"
+                onClick={() => {
+                  const result = calculateTaxes({
+                    maritalStatus: maritalStatus as MaritalStatusType,
+                    stateOfResidence: stateOfResidence as LocationType,
+                    goods
+                  })
+                  navigate('/output', { state: { result } })
+                }}
+                disabled={!isFormValid()}
+                tooltipText={getFormValidationMessage()}
+              />
+            </div>
+            <div className="w-1/2 sm:w-32">
+              <SquaredButton
+                color="#ADE0F3"
+                text="Limpar"
+                onClick={handleClear}
+              />
+            </div>
           </div>
         </div>
       </div>

@@ -1,7 +1,4 @@
 import ProgressBar from '../components/ProgressBar'
-import Menu from '../sections/Menu'
-import Header from '../sections/Header'
-import Footer from '../sections/Footer'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { IoIosArrowBack } from 'react-icons/io'
 
@@ -44,12 +41,10 @@ const OutputCalculator = () => {
   return (
     <div className="min-h-screen bg-white">
       <div className="container mx-auto px-4 py-8">
-        <Menu />
-        <Header />
         <div className="w-full flex flex-col items-center justify-evenly">
           <div className="grid bg-[#8CE0FF] w-full max-w-7xl gap-10 rounded-2xl py-10 overflow-auto relative">
             <button
-              onClick={() => navigate('/')}
+              onClick={() => navigate('/calculator')}
               className="absolute top-4 left-4 text-gray-600 hover:text-gray-800"
             >
               <IoIosArrowBack size={24} />
@@ -126,7 +121,6 @@ const OutputCalculator = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   )
 }
