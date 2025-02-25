@@ -1,24 +1,24 @@
-import HerdeiLogo from '../assets/HerdeiLogo.png'
-import RoundedButton from '../components/RoundedButton'
-import { useState } from 'react'
-import { FiMenu, FiX } from 'react-icons/fi'
-import { scrollToComponent } from '../utils/scrollUtils'
-import { useNavigate } from 'react-router-dom'
-import { handleCalculateClick } from '../utils/navigation'
+import HerdeiLogo from "../assets/HerdeiLogo.png";
+import RoundedButton from "../components/RoundedButton";
+import { useState } from "react";
+import { FiMenu, FiX } from "react-icons/fi";
+import { scrollToComponent } from "../utils/scrollUtils";
+import { useNavigate } from "react-router-dom";
+import { handleCalculateClick } from "../utils/navigation";
 
 const Menu = () => {
-  const navigate = useNavigate()
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const navigate = useNavigate();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
-    id: string
+    id: string,
   ) => {
     if (id) {
-      e.preventDefault()
-      scrollToComponent(id)
+      e.preventDefault();
+      scrollToComponent(id);
     }
-  }
+  };
 
   return (
     <header className="bg-white w-full border-b border-gray-200 shadow-sm">
@@ -38,14 +38,14 @@ const Menu = () => {
             </a>
             <a
               href="#como-funciona"
-              onClick={(e) => handleNavClick(e, 'como-funciona')}
+              onClick={(e) => handleNavClick(e, "como-funciona")}
               className="text-gray-600 hover:text-gray-900"
             >
               Como Funciona
             </a>
             <a
               href="#simulador"
-              onClick={(e) => handleNavClick(e, 'simulador')}
+              onClick={(e) => handleNavClick(e, "simulador")}
               className="text-gray-600 hover:text-gray-900"
             >
               Simulador
@@ -67,7 +67,7 @@ const Menu = () => {
           <div className="hidden md:flex justify-end w-1/4">
             <RoundedButton
               text="Simular agora"
-              onClick={() => scrollToComponent('simulador', navigate)}
+              onClick={() => scrollToComponent("simulador", navigate)}
             />
           </div>
 
@@ -92,14 +92,14 @@ const Menu = () => {
               </a>
               <a
                 href="#como-funciona"
-                onClick={(e) => handleNavClick(e, 'como-funciona')}
+                onClick={(e) => handleNavClick(e, "como-funciona")}
                 className="block px-3 py-2 text-gray-600 hover:text-gray-900"
               >
                 Como Funciona
               </a>
               <a
                 href="#simulador"
-                onClick={(e) => handleNavClick(e, 'simulador')}
+                onClick={(e) => handleNavClick(e, "simulador")}
                 className="block px-3 py-2 text-gray-600 hover:text-gray-900"
               >
                 Simulador
@@ -119,7 +119,7 @@ const Menu = () => {
               <div className="px-3 py-2 w-full">
                 <RoundedButton
                   text="Simular agora"
-                  onClick={() => scrollToComponent('simulador', navigate)}
+                  onClick={() => scrollToComponent("simulador", navigate)}
                 />
               </div>
             </div>
@@ -127,7 +127,7 @@ const Menu = () => {
         )}
       </div>
     </header>
-  )
-}
+  );
+};
 
-export default Menu
+export default Menu;

@@ -1,9 +1,9 @@
 interface DropdownProps {
-  label: string
-  options: string[]
-  value: string
-  onChange: (value: string) => void
-  required?: boolean
+  label: string;
+  options: string[];
+  value: string;
+  onChange: (value: string) => void;
+  required?: boolean;
 }
 
 const Dropdown = ({
@@ -11,7 +11,7 @@ const Dropdown = ({
   options,
   value,
   onChange,
-  required = true
+  required = true,
 }: DropdownProps) => {
   return (
     <div className="w-full block">
@@ -35,7 +35,7 @@ const Dropdown = ({
         ))}
       </select>
     </div>
-  )
-}
+  );
+};
 
-export default Dropdown
+export default Dropdown;

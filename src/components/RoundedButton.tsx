@@ -1,21 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
 interface RoundedButtonProps {
-  text: string
-  onClick: () => void
+  text: string;
+  onClick: () => void;
 }
 
 const RoundedButton: React.FC<RoundedButtonProps> = ({
   text,
-  onClick
+  onClick,
 }: RoundedButtonProps) => {
-  const [isRippling, setIsRippling] = useState(false)
+  const [isRippling, setIsRippling] = useState(false);
 
   const handleClick = () => {
-    setIsRippling(true)
-    onClick()
-    setTimeout(() => setIsRippling(false), 300) // Reset after 300ms
-  }
+    setIsRippling(true);
+    onClick();
+    setTimeout(() => setIsRippling(false), 300); // Reset after 300ms
+  };
 
   return (
     <button
@@ -25,7 +25,7 @@ const RoundedButton: React.FC<RoundedButtonProps> = ({
     >
       {text}
     </button>
-  )
-}
+  );
+};
 
-export default RoundedButton
+export default RoundedButton;

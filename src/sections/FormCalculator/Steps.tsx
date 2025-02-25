@@ -1,4 +1,4 @@
-import { PiPiggyBank, PiIdentificationCard, PiSealCheck } from 'react-icons/pi'
+import { PiPiggyBank, PiIdentificationCard, PiSealCheck } from "react-icons/pi";
 
 const Steps = () => {
   return (
@@ -57,7 +57,7 @@ const Steps = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Steps
+export default Steps;

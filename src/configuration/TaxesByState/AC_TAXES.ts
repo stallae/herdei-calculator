@@ -5,6 +5,6 @@ export const AC_TAXES = {
     1500000: 0.05, // 5% 1,500,000-2,500,000
     2500000: 0.06, // 6% 2,500,000-3,500,000
     3500000: 0.07, // 7% above 3,500,000
-    COLLATERAL: 0.08 // 8% for collateral heirs
-  }
-}
+    COLLATERAL: 0.08, // 8% for collateral heirs
+  },
+};

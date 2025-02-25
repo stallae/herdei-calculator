@@ -1,7 +1,7 @@
-import React from 'react'
-import RoundedButton from '../../components/RoundedButton.tsx'
-import { AiFillStar } from 'react-icons/ai'
-import { scrollToComponent } from '../../utils/scrollUtils'
+import React from "react";
+import RoundedButton from "../../components/RoundedButton.tsx";
+import { AiFillStar } from "react-icons/ai";
+import { scrollToComponent } from "../../utils/scrollUtils";
 
 const Advantages: React.FC = () => {
   return (
@@ -13,7 +13,7 @@ const Advantages: React.FC = () => {
           </p>
           <RoundedButton
             text="Simule Agora"
-            onClick={() => scrollToComponent('simulador')}
+            onClick={() => scrollToComponent("simulador")}
           />
         </div>
         <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 text-inter font-semibold h-full mt-4">
@@ -49,7 +49,7 @@ const Advantages: React.FC = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Advantages
+export default Advantages;
