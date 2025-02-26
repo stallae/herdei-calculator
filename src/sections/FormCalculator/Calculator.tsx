@@ -85,7 +85,7 @@ const Calculator = () => {
   };
 
   const getFormValidationMessage = () => {
-    if (!numberOfGoods || parseInt(numberOfGoods) < 1) 
+    if (!numberOfGoods || parseInt(numberOfGoods) < 1)
       return "Por favor, informe pelo menos 1 bem";
     if (!maritalStatus) return "Por favor, selecione o estado civil";
     if (!stateOfResidence) return "Por favor, selecione o estado de residência";
@@ -245,7 +245,9 @@ const Calculator = () => {
                   navigate("/output", { state: { result } });
                 }}
                 disabled={!isFormValid()}
-                tooltipText={!isFormValid() ? getFormValidationMessage() : undefined}
+                tooltipText={
+                  !isFormValid() ? getFormValidationMessage() : undefined
+                }
               />
             </div>
             <div className="w-1/2 sm:w-32">
