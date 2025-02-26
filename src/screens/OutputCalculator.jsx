@@ -40,16 +40,16 @@ const OutputCalculator = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <div className="container mx-auto px-4 py-8">
-        <div className="w-full flex flex-col items-center justify-evenly">
-          <div className="grid bg-[#8CE0FF] w-full max-w-7xl gap-10 rounded-2xl py-10 overflow-auto relative">
+      <div className="container mx-auto px-4 py-5">
+        <div className="w-full flex flex-col items-center min-h-[calc(100vh-4rem)]">
+          <div className="grid bg-[#8CE0FF] w-full max-w-7xl gap-10 rounded-2xl p-8 md:p-10">
             <button
-              onClick={() => navigate("/calculator")}
+              onClick={() => navigate("/calculadora")}
               className="absolute top-4 left-4 text-gray-600 hover:text-gray-800"
             >
               <IoIosArrowBack size={24} />
             </button>
-            <div className="text-2xl font-inter font-bold text-black text-center">
+            <div className="text-2xl font-inter font-bold text-black text-center mt-4">
               CÁLCULO E SAÍDA DE DADOS
             </div>
             <div className="flex flex-col md:flex-row justify-between px-4 md:px-10 gap-6">
@@ -107,7 +107,7 @@ const OutputCalculator = () => {
                 {result.Comparison.totalDifference.percentage.toFixed(1)}%)
               </div>
             </div>
-            <div className="flex flex-col md:flex-row gap-4 justify-center h-15 mt-8 w-full max-w-7xl mx-auto px-4 md:px-10">
+            <div className="flex flex-col md:flex-row gap-4 justify-center h-15 w-full max-w-7xl mx-auto px-4 md:px-10">
               <button
                 onClick={() =>
                   (window.location.href =

@@ -64,7 +64,8 @@ const Calculator = () => {
   };
 
   const isFormValid = () => {
-    if (!maritalStatus || !stateOfResidence || !numberOfGoods) return false;
+    if (!numberOfGoods || parseInt(numberOfGoods) < 1) return false;
+    if (!maritalStatus || !stateOfResidence) return false;
     if (!name || !email || !phone) return false;
 
     return goods.every((good) => {
@@ -84,9 +85,10 @@ const Calculator = () => {
   };
 
   const getFormValidationMessage = () => {
+    if (!numberOfGoods || parseInt(numberOfGoods) < 1) 
+      return "Por favor, informe pelo menos 1 bem";
     if (!maritalStatus) return "Por favor, selecione o estado civil";
     if (!stateOfResidence) return "Por favor, selecione o estado de residência";
-    if (!numberOfGoods) return "Por favor, informe a quantidade de bens";
     if (!name) return "Por favor, informe seu nome";
     if (!email) return "Por favor, informe seu email";
     if (!phone) return "Por favor, informe seu telefone";
@@ -243,7 +245,7 @@ const Calculator = () => {
                   navigate("/output", { state: { result } });
                 }}
                 disabled={!isFormValid()}
-                tooltipText={getFormValidationMessage()}
+                tooltipText={!isFormValid() ? getFormValidationMessage() : undefined}
               />
             </div>
             <div className="w-1/2 sm:w-32">

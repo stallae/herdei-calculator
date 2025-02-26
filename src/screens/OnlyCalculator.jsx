@@ -1,10 +1,10 @@
-import Calculator from "../sections/FormCalculator/Calculator.js";
+import Calculator from "../sections/FormCalculator/Calculator.jsx";
 
 const OnlyCalculator = () => {
   return (
-    <div>
-      <Calculator />
-    </div>
+    <div className="min-h-screen bg-white">
+          <Calculator />
+        </div>
   );
 };
 
