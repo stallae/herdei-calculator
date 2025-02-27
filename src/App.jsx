@@ -1,39 +1,18 @@
-import { useEffect } from "react";
-import Calculator from "../sections/FormCalculator/Calculator.jsx";
-import Footer from "../sections/Footer.tsx";
-import Menu from "../sections/Menu.tsx";
-import Header from "../sections/Header.tsx";
-import Steps from "../sections/FormCalculator/Steps.tsx";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import FormCalculator from "./screens/FormCalculator";
+import OutputCalculator from "./screens/OutputCalculator";
+import OnlyCalculator from "./screens/OnlyCalculator";
 
-const FormCalculator = () => {
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.innerHTML = `
-      function sendHeight() {
-        const height = document.documentElement.scrollHeight;
-        window.parent.postMessage({ iframeHeight: height }, "*");
-      }
-
-      window.addEventListener("load", sendHeight);
-      window.addEventListener("resize", sendHeight);
-      setInterval(sendHeight, 500);
-    `;
-    document.body.appendChild(script);
-
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
-
+function App() {
   return (
-    <div>
-      <Menu />
-      <Header />
-      <Steps />
-      <Calculator />
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<FormCalculator />} />
+        <Route path="/output" element={<OutputCalculator />} />
+        <Route path="/calculadora" element={<OnlyCalculator />} />
+      </Routes>
+    </BrowserRouter>
   );
-};
+}
 
-export default FormCalculator;
+export default App;

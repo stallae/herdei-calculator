@@ -29,6 +29,25 @@ const Calculator = () => {
   const [phone, setPhone] = useState("");
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const sendHeight = () => {
+      const height = document.documentElement.scrollHeight;
+      window.parent.postMessage({ iframeHeight: height }, "*");
+    };
+
+    // Send height on load and resize
+    sendHeight();
+    window.addEventListener("resize", sendHeight);
+
+    // Update height every 500ms (for dynamic changes)
+    const interval = setInterval(sendHeight, 500);
+
+    return () => {
+      window.removeEventListener("resize", sendHeight);
+      clearInterval(interval);
+    };
+  }, []);
+
   const handleClear = () => {
     setMaritalStatus("");
     setStateOfResidence("");
