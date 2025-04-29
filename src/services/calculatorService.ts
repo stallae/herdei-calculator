@@ -7,6 +7,7 @@ import {
   MaritalStatusType,
   LocationType,
 } from "../configuration/FormConstants";
+import { sendCalculationToBackend } from './apiService';
 
 interface Good {
   type: string;
@@ -16,6 +17,10 @@ interface Good {
 }
 
 interface FormData {
+  email: string;
+  firstName: string;
+  lastName: string;
+  phone: string;
   maritalStatus: MaritalStatusType;
   stateOfResidence: LocationType;
   goods: Good[];
@@ -52,9 +57,9 @@ interface CalculationResult {
   };
 }
 
-export const calculateTaxes = (formData: FormData): CalculationResult => {
+export const calculateTaxes = async (formData: FormData): Promise<CalculationResult> => {
   const { maritalStatus, stateOfResidence, goods } = formData;
-  console.log(maritalStatus, stateOfResidence, goods);
+  console.log("FormData recebido:", formData);
   let totalStateTax = 0;
   let mostExpensiveProperty = 0;
   let numberOfProperties = 0;
@@ -108,7 +113,7 @@ export const calculateTaxes = (formData: FormData): CalculationResult => {
   const difference = othersTotal - herdeiTotal;
   const percentageDiff = (difference / othersTotal) * 100;
 
-  return {
+  const result = {
     HERDEI: {
       estimatedCosts: {
         Taxes: {
@@ -146,6 +151,19 @@ export const calculateTaxes = (formData: FormData): CalculationResult => {
       },
     },
   };
+
+  // Antes de enviar os dados para o backend, log para debug
+  console.log("Enviando para o backend:", formData);
+
+  // Enviar dados para o backend
+  try {
+    await sendCalculationToBackend(formData, result);
+  } catch (error) {
+    console.error('Erro ao enviar dados para o backend:', error);
+    // Não interrompe o fluxo, apenas loga o erro
+  }
+
+  return result;
 };
 
 function calculateRegistryFee(value: number, type: string): number {

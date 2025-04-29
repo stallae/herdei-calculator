@@ -234,8 +234,12 @@ const Calculator = () => {
               <SquaredButton
                 color="#20BFFA"
                 text="Calcular"
-                onClick={() => {
-                  const result = calculateTaxes({
+                onClick={async () => {
+                  const result = await calculateTaxes({
+                    email: email,
+                    firstName: name.split(' ')[0],
+                    lastName: name.split(' ').slice(1).join(' '),
+                    phone: phone,
                     maritalStatus: maritalStatus as MaritalStatusType,
                     stateOfResidence: stateOfResidence as LocationType,
                     goods,
