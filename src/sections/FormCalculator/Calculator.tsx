@@ -1,13 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Dropdown from "../../components/Dropdown";
 import Input from "../../components/Input";
 import SquaredButton from "../../components/SquaredButton";
 import {
   Location,
-  MaritalStatus,
-  PropertyType,
-  MaritalStatusType,
   LocationType,
+  MaritalStatus,
+  MaritalStatusType,
+  PropertyType,
 } from "../../configuration/FormConstants";
 import { useNavigate } from "react-router-dom";
 import { calculateTaxes } from "../../services/calculatorService";
@@ -28,6 +28,25 @@ const Calculator = () => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const sendHeight = () => {
+      const height = document.documentElement.scrollHeight;
+      window.parent.postMessage({ iframeHeight: height }, "*");
+    };
+
+    // Send height on load and resize
+    sendHeight();
+    window.addEventListener("resize", sendHeight);
+
+    // Update height every 500ms (for dynamic changes)
+    const interval = setInterval(sendHeight, 500);
+
+    return () => {
+      window.removeEventListener("resize", sendHeight);
+      clearInterval(interval);
+    };
+  }, []);
 
   const handleClear = () => {
     setMaritalStatus("");
@@ -64,7 +83,8 @@ const Calculator = () => {
   };
 
   const isFormValid = () => {
-    if (!maritalStatus || !stateOfResidence || !numberOfGoods) return false;
+    if (!numberOfGoods || parseInt(numberOfGoods) < 1) return false;
+    if (!maritalStatus || !stateOfResidence) return false;
     if (!name || !email || !phone) return false;
 
     return goods.every((good) => {
@@ -84,9 +104,10 @@ const Calculator = () => {
   };
 
   const getFormValidationMessage = () => {
+    if (!numberOfGoods || parseInt(numberOfGoods) < 1)
+      return "Por favor, informe pelo menos 1 bem";
     if (!maritalStatus) return "Por favor, selecione o estado civil";
     if (!stateOfResidence) return "Por favor, selecione o estado de residência";
-    if (!numberOfGoods) return "Por favor, informe a quantidade de bens";
     if (!name) return "Por favor, informe seu nome";
     if (!email) return "Por favor, informe seu email";
     if (!phone) return "Por favor, informe seu telefone";
@@ -116,12 +137,12 @@ const Calculator = () => {
       id="simulador"
       className=" w-screen bg-[#20BFFA] flex flex-col items-center gap-10 p-5 md:p-10"
     >
-      <div className="text-3xl font-bold w-10/12">
-        <span className="text-white">CALCULADORA</span>
-        <br />
-        <span className="text-white">DE </span>
-        <span className="text-black">IMPOSTOS</span>
-      </div>
+      {/*<div className="text-3xl font-bold w-10/12">*/}
+      {/*  <span className="text-white">CALCULADORA</span>*/}
+      {/*  <br />*/}
+      {/*  <span className="text-white">DE </span>*/}
+      {/*  <span className="text-black">IMPOSTOS</span>*/}
+      {/*</div>*/}
       <div className="grid bg-white w-11/12 h-10/12 gap-4 rounded-2xl p-5 py-10 md:p-15 overflow-auto">
         <div className="border-b border-[#20BFFA] pb-4 mb-4">
           <h3 className="text-sm font-semibold mb-3">Informações de Contato</h3>
@@ -247,7 +268,9 @@ const Calculator = () => {
                   navigate("/output", { state: { result } });
                 }}
                 disabled={!isFormValid()}
-                tooltipText={getFormValidationMessage()}
+                tooltipText={
+                  !isFormValid() ? getFormValidationMessage() : undefined
+                }
               />
             </div>
             <div className="w-1/2 sm:w-32">
